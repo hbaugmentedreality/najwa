@@ -17,23 +17,87 @@
       gtag('config', 'G-VJ2KLZ8QLV');
     </script>
     
+    <style>
+
+      .example-container {
+              overflow: hidden;
+              position: absolute;
+              width: 100%;
+              height: 100%;
+            }
+          
+       #example-loading-overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 2;
+            }
+
+        #example-loading-overlay .inner {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+        }
+
+        #example-loading-overlay.hidden {
+	          display: none;
+          }
+
+        #example-loading-overlay img {
+	      opacity: 1;
+	      width: 70%;
+	      align-self: center;
+          }
+
+        #example-loading-overlay .inner .scanline {
+          position: absolute;
+          width: 100%;
+          height: 10px;
+          background: white;
+          animation: move 2s linear infinite;
+          }
+ 
+    </style>
+
+
+
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
 
-  <a-assets>
-    <a-asset-item id="avatarModel" src="assets/model/scorpion_3.gltf"></a-asset-item>
+  <div class="example-container">
     
-  </a-assets>
+    <div id="example-loading-overlay" class="hidden">
+      <div class="inner">
+        <img src="assets/images/Logo_najwa.png"/>
+        <h1>Loading...</h1>
+      </div>
+    </div>
 
 
-  <a-scene mindar="imageTargetSrc: ./targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-gltf-model rotation="0 0 0 " position="0 -1.5 0.7" scale="0.6 0.6 0.6" src="#avatarModel" animation-mixer>
-    </a-entity>
-  </a-scene>
+      <a-assets>
+        <a-asset-item id="avatarModel" src="assets/model/scorpion_3.gltf"></a-asset-item>
+        
+      </a-assets>
+
+
+      <a-scene mindar="imageTargetSrc: ./targets.mind;  showStats: false; uiLoading: #example-loading-overlay;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+        <a-entity mindar-image-target="targetIndex: 0">
+          <a-gltf-model rotation="0 0 0 " position="0 -1.5 0.7" scale="0.6 0.6 0.6" src="#avatarModel" animation-mixer>
+        </a-entity>
+      </a-scene>
   
+  </div>
+
   <div>
     <img style="position: absolute; bottom: 0; right: 0;" src="assets/images/HB_Logo.png" width="35%"></img>
   </div>
